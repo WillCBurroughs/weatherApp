@@ -27,11 +27,19 @@ async function loadIn(zipVal){
     // Will return passed in val
     urlVal = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipVal + "&appid=" + apiKey;
 
-    let dataDisplay = await axios.get(urlVal);
+    // let dataDisplay = await axios.get(urlVal)
+    let dataDisplay = axios.get(urlVal)
+        .then(response => {
+            holdText.textContent = response.data.name
+        })
+        .catch(error => {
+            holdText.textContent = `Invalid error: ${error}`;
+        })
+    
 
     console.log(dataDisplay);
 
-    holdText.textContent = dataDisplay.data.name;
+    // holdText.textContent = dataDisplay.data.name;
 
 }
 
