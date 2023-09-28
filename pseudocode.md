@@ -39,8 +39,8 @@ I am now adding the images of the basic design into an image file. With this I k
 Now Need to go through and make different versions of project. For first version of project I will have text that will display the name of 
 the city. (Done)
 
-For second version, I will have it so that user can input zip code and we can display city name - you put in. I will also institute try and catch to display message. 
+For second version, I will have it so that user can input zip code and we can display city name - you put in. I will also institute try and catch to display message. (Done)
 
-For third version, I will display temperature as well on screen. I will also attempt to get the current user location. I will display the addtional displays that I believe are important. 
+For third version, I will display temperature as well on screen. I will also attempt to get the current user location. I will display the addtional displays that I believe are important. Need to import bootstrap. I will also attempt to place container info in a container and then row, column format. (Done)
 
-For fourth version I will save user's location and default to currently displayed location. 
+Move city name lower on the page. Need to add switch statement that determines image to load, So need to load in some images I could use  Make light and dark button functionality look like they should. For fourth version I will save user's location and default to currently displayed location. 
