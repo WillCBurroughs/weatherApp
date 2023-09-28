@@ -34,6 +34,9 @@ async function loadIn(zipVal){
         })
         .catch(error => {
             holdText.textContent = `Invalid error: ${error}`;
+            if (error.message.includes("404")) {
+                holdText.textContent = "Zip code not found";
+            }
         })
     
 
