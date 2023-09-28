@@ -27,17 +27,17 @@ async function loadIn(zipVal){
     // Will return passed in val
     urlVal = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipVal + "&appid=" + apiKey;
 
-    let responseDate = await fetch(urlVal);
-
-    let dataDisplay = await responseDate.json(); 
+    let dataDisplay = await axios.get(urlVal);
 
     console.log(dataDisplay);
 
-    holdText.textContent = dataDisplay.name;
+    holdText.textContent = dataDisplay.data.name;
 
 }
 
-loadIn(40502);
+window.addEventListener('DOMContentLoaded', function(){
+    loadIn(40502);
+}, false);
 
 // Adding ability to call loadIn based on clicking zip code
 
