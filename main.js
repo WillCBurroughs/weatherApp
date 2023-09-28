@@ -34,8 +34,11 @@ async function loadIn(zipVal){
         })
         .catch(error => {
             holdText.textContent = `Invalid error: ${error}`;
-            if (error.message.includes("404")) {
+            if (error.message.includes("4")) {
                 holdText.textContent = "Zip code not found";
+            }
+            if(error.message.includes("5")) {
+                holdText.textContent = "Our Servers are unable to process this request at this time. We apologize"
             }
         })
     
