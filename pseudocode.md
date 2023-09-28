@@ -39,8 +39,8 @@ I am now adding the images of the basic design into an image file. With this I k
 Now Need to go through and make different versions of project. For first version of project I will have text that will display the name of 
 the city. (Done)
 
-For second version, I will have it so that user can input zip code and we can display city name - you put in. I will also institute try and catch to display message. 
+For second version, I will have it so that user can input zip code and we can display city name - you put in. I will also institute try and catch to display message. (Done)
 
-For third version, I will display temperature as well on screen. I will also attempt to get the current user location. I will display the addtional displays that I believe are important. 
+For third version, I will display temperature as well on screen. I will also attempt to get the current user location. I will display the addtional displays that I believe are important. Need to import bootstrap. I will also attempt to place container info in a container and then row, column format. 
 
 For fourth version I will save user's location and default to currently displayed location. 
