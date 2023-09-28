@@ -5,14 +5,28 @@ body{
 
 .darkButton {
     background-color: #5D5866;
-    color: #474350;
+    color: rgba(255, 255, 255, 0.8);
+    border: solid 2px white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
     border-radius: 30px;
+    height: 70px; 
+    width: 300px;
 }
 
 .lightButton {
     border-radius: 30px;
     border: 2px solid #FFF;
     background: #FDFDFD;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    width: 300px;
+    height: 70px;
+}
+
+.cityName {
+    color: rgb(253, 253, 253);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 45px;
+    font-weight: bolder;
 }

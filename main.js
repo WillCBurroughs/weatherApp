@@ -1,9 +1,14 @@
 
 let holdText = document.getElementById("Version1");
 holdText.textContent = "Hello";
+holdText.classList.add("cityName");
 
 // Where user will input zip code
 let inputZip = document.createElement("input");
+inputZip.classList.add("darkButton");
+
+inputZip.placeholder = "Input Zipcode: "
+
 inputZip.type = "number"
 
 // Adding button to submit 
@@ -28,6 +33,7 @@ let holdTopRow = document.createElement("div");
 holdTopRow.classList.add("row");
 holdTopRow.classList.add("bg-success");
 holdTopRow.classList.add("vw-75");
+
 
 // Need to add cols for containing all the elements 
 let holdZipCol = document.createElement("col"); 
