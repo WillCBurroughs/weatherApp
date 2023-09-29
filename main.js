@@ -1,4 +1,4 @@
-localStorage.clear();
+
 
 // Used to keep up with currentValue 
 let currentValue;
@@ -54,9 +54,31 @@ holdTopPortion.classList.add("container")
 let holdTopRow = document.createElement("div");
 
 holdTopRow.classList.add("row");
-holdTopRow.classList.add("bg-success");
 holdTopRow.classList.add("vw-75");
 
+// Creating delete button 
+
+let deleteBtn = document.createElement("div");
+deleteBtn.textContent = "X"
+deleteBtn.classList.add("deleteBtn", "col-2", "col-lg-1", "order-lg-4", "order-2");
+
+// Need to delete value from array and return firstVal or secondVal
+async function deleteLocation() {
+
+    // Can only call this while location is greater than 1 
+
+    if(arrayOfValues.length > 1){
+    // First value is gone 
+    arrayOfValues = arrayOfValues.filter(value => value != currentValue);
+    }
+    // Can now call loadIn at zero index 
+    await loadIn(arrayOfValues[0]);
+
+}
+
+deleteBtn.addEventListener("click", function(){
+    deleteLocation(); 
+})
 
 // Need to add cols for containing all the elements 
 let holdZipCol = document.createElement("col"); 
@@ -66,14 +88,13 @@ let holdSubmitCol = document.createElement("col");
 let holdCityName = document.createElement("col")
 
 // Need to add cols styling for size 
-holdZipCol.classList.add("col-12", "col-lg-4", "order-1", "order-lg-2");
-holdZipCol.classList.add("bg-primary");
+holdZipCol.classList.add("col-10", "col-lg-4", "order-1", "order-lg-2");
 
-holdSubmitCol.classList.add("col-12", "col-lg-4", "order-2", "order-lg-3");
-holdSubmitCol.classList.add("bg-black");
+holdSubmitCol.classList.add("col-12", "col-lg-4", "order-3", "order-lg-3");
+
 
 // Holds city 
-holdCityName.classList.add("col-12", "col-lg-4", "order-3", "order-lg-1")
+holdCityName.classList.add("col-12", "col-lg-3", "order-4", "order-lg-1")
 // holdCityName.classList.add("bg-white");
 
 // Adds elements to top column
@@ -83,6 +104,7 @@ holdCityName.appendChild(holdText);
 
 // Adds columns to top Row
 holdTopRow.appendChild(holdCityName);
+holdTopRow.appendChild(deleteBtn);
 holdTopRow.appendChild(holdZipCol); 
 holdTopRow.appendChild(holdSubmitCol);
 
@@ -95,10 +117,14 @@ let tempImage = document.createElement("div");
 
 // Need something that will hold this image in a div 
 let holdImageDiv = document.createElement("div")
-holdImageDiv.classList.add("container", "bg-success", "holdFullImage", "vw-75");
+holdImageDiv.classList.add("container", "holdFullImage", "vw-75", "background-image");
+
+
+
 holdImageDiv.appendChild(tempImage);
 
 holdImageDiv.style.backgroundImage = "url(img/Hot.jpg)";
+holdImageDiv.style.backgroundColor = "rgba(0,0,0,0.5)";
 holdImageDiv.style.backgroundSize = "cover";
 holdImageDiv.style.backgroundRepeat = "no-repeat"; 
 
@@ -108,9 +134,9 @@ tempDisplay.innerText = "Display Value";
 
 tempDisplay.classList.add("cityName", "position-relative");
 tempDisplay.style.textAlign = "right";
-tempDisplay.style.top = "200px";
+tempDisplay.style.fontSize = "100px";
+tempDisplay.style.top = "150px";
 // tempDisplay.style.
-
 
 
 // Add date to get current date and set that into 
@@ -140,9 +166,15 @@ let getMonth = currentDate.getMonth();
 let holdDate = document.createElement("h3");
 holdDate.innerText = dateToDisplay + " " + holdMonths[getMonth] + ","; 
 
+holdDate.classList.add("position-relative")
+
 // Used to unbold
 let holdSpan = document.createElement("span"); 
 holdSpan.classList.add("Unbold"); 
+
+let divDate = document.createElement("div");
+divDate.style.zIndex = 4;
+divDate.appendChild(holdDate);
 
 let dayOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -150,9 +182,11 @@ holdSpan.textContent = " " + String(dayOfWeek[currentDate.getDay()]);
 
 holdDate.appendChild(holdSpan);
 
-holdDate.classList.add("date");
+holdDate.classList.add("date", "cityName");
 
-holdImageDiv.appendChild(holdDate);
+holdDate.style.fontSize = "40px";
+
+holdImageDiv.appendChild(divDate);
 
 // console.log(dateToDisplay);
 
@@ -170,27 +204,6 @@ newArrow.style.position = "relative";
 
 newArrow.style.color = "white"
 
-// Function for newArrow that will allow for moving between values 
-
-// async function moveLeft(){
-    
-//     // You are currently on the leftMost value, go to rightmost val 
-//     if(currentValue === arrayOfValues[0]){
-//         await loadIn(arrayOfValues[arrayOfValues.length - 1]);
-//     } else {
-        
-//         for(let i = 0; i < arrayOfValues.length; i++){
-//             if(arrayOfValues[i] === currentValue){
-//                 currentIndex = i;
-//             }
-//         }
-
-//         await loadIn(arrayOfValues[currentIndex - 1]);
-        
-//     }
-
-//     // Need to move through array and textValue of array
-// }
 
 async function moveLeft(){
     
@@ -244,7 +257,7 @@ rightArrow.style.position = "relative";
 
 rightArrow.style.color = "white"
 
-holdButtons.classList.add("d-flex", "justify-content-between", "align-items-center", "col-12", "vw-75", "bg-success", "p-3");
+holdButtons.classList.add("d-flex", "holdButton", "position-relative", "justify-content-between", "align-items-center", "col-12", "vw-75", "p-3");
 
 
 async function moveRight(){
@@ -375,7 +388,7 @@ async function loadIn(zipVal){
             } else {
                 holdImageDiv.style.backgroundImage = "url(img/Hot.jpg)";
             }
-
+                holdImageDiv.style.backgroundColor = "rgba(0,0,0,0.5)";
             // I can call the function to set the array and I can console.log to see value
             arrayOfValues = addNewValueToArray(arrayOfValues, JSON.parse(zipVal));
             console.log(arrayOfValues);

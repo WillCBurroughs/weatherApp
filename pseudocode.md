@@ -49,4 +49,12 @@ I will now add the divs to the page that will represent where we hold the Left a
 
 I will now add an overlay. 
 
-This will be a large step. For this one I will have an array and when adding a new value it will be pushed to the array. If there is already a value of this in the array we will not push this to the array, we will simply go to this in the array. If there are values in the array we will make the left and right buttons appear on the screen. We will save the array to memory. If the delete button is pressed we will delete this instance from the array. On load in we will add lexington if it is not already added. For this we will have a function that checks if the value we want to add is already in the array. We will also iterate through the array on presses to go to the next index in the array. We will loop around if you are at the end of the index array or if you are at the start of it. 
+This will be a large step. For this one I will have an array and when adding a new value it will be pushed to the array. (Done) If there is already a value of this in the array we will not push this to the array (done), we will simply go to this in the array (done). 
+
+If there are values in the array we will make the left and right buttons appear on the screen (Done). We will save the array to memory (Done).
+
+We will also iterate through the array on presses to go to the next index in the array. We will loop around if you are at the end of the index array or if you are at the start of it. (Done)
+
+Need to add delete button (Done). If the delete button is pressed we will delete this instance from the array. When button is pressed we will set currentValue and call (Done)
+
+Now will add overlay to make image and all text look better. Need to add darkening effect to holdImgDiv to make everything appear more clearly 
