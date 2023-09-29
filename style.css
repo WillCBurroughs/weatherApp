@@ -83,3 +83,44 @@ body{
   .holdButton {
     top: 100px;
   }
+
+  /* These define wind, pressure, humidity */
+
+  .trio {
+    border-radius: 30px;
+    background: #FDFDFD;
+    height: 135px; 
+    position: relative; 
+    margin: 15px;
+  }
+
+  .mainText {
+    color: #474350;
+    font-family: "Inter, Arial, Helvetica, sans-serif";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    position: relative; 
+    top: 0px;
+    left: 13px; 
+  }
+
+  .valueNumber {
+    color: #000;
+    font-family: "Inter, Arial, Helvetica, sans-serif";
+    position: relative; 
+    top: 10px; 
+    left: 13px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .iconToAdd {
+    margin-left: 13px;
+    margin-top: 28px;
+    position: relative; 
+    width: 30px; 
+  }

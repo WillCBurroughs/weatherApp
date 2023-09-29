@@ -329,6 +329,79 @@ holdImageDiv.appendChild(tempDisplay);
 document.body.appendChild(holdImageDiv);
 
 
+let holdWind = document.createElement("div");
+holdWind.classList.add("col", "col-3", "trio");
+
+let windImage = document.createElement("img");
+windImage.classList.add("iconToAdd"); 
+windImage.src = "img/Wind.png";
+
+holdWind.appendChild(windImage);
+
+let windText = document.createElement("h3");
+windText.textContent = "Wind";
+windText.classList.add("mainText");
+
+holdWind.appendChild(windText);
+
+let windValue = document.createElement("p");
+windValue.classList.add("valueNumber")
+
+holdWind.appendChild(windValue);
+
+let holdPressure = document.createElement("div");
+holdPressure.classList.add("col", "col-3", "trio");
+
+let pressureImage = document.createElement("img"); 
+pressureImage.classList.add("iconToAdd"); 
+pressureImage.src = "img/thermometer.png"
+
+holdPressure.appendChild(pressureImage); 
+
+let pressureText = document.createElement("h3");
+pressureText.textContent = "Pressure";
+pressureText.classList.add("mainText");
+
+holdPressure.appendChild(pressureText);
+
+let pressureValue = document.createElement("p");
+pressureValue.classList.add("valueNumber");
+
+holdPressure.appendChild(pressureValue);
+
+let holdHumidity = document.createElement("div");
+holdHumidity.classList.add("col", "col-3", "trio");
+
+let humidityImage = document.createElement("img");
+humidityImage.classList.add("iconToAdd");
+humidityImage.src = "img/humidity.png"
+
+holdHumidity.appendChild(humidityImage);
+
+let humidityText = document.createElement("h3");
+humidityText.textContent = "Humidity";
+humidityText.classList.add("mainText");
+
+holdHumidity.appendChild(humidityText);
+
+let humidityValue = document.createElement("p");
+humidityValue.classList.add("valueNumber")
+
+holdHumidity.appendChild(humidityValue);
+
+let newRow = document.createElement("div");
+newRow.classList.add("row", "bg-success", "justify-content-between");
+
+let trioContainer = document.createElement("div");
+trioContainer.classList.add("container", "bg-success", "vw-75");
+
+newRow.appendChild(holdWind);
+newRow.appendChild(holdPressure);
+newRow.appendChild(holdHumidity);
+
+trioContainer.appendChild(newRow);
+document.body.appendChild(trioContainer);
+
 
 // This function is used to test if a value is already in the array. 
 // If this is already in the array, we don't want to push to array
@@ -356,10 +429,10 @@ async function loadIn(zipVal){
 
     console.log("API Request URL:", urlVal);
     // Remove this in a minute 
-    // let rememberValue = await axios.get(urlVal); 
+    let rememberValue = await axios.get(urlVal); 
 
-    // // This is what we set the temperature equal to 
-    // console.log((rememberValue));
+    // This is what we set the temperature equal to 
+    console.log((rememberValue));
 
     // Checking to get main
     // console.log((rememberValue.data.weather[0].main))
@@ -374,6 +447,17 @@ async function loadIn(zipVal){
             // Add functionality to determine what image should be 
             tempDisplay.textContent = Math.round(holdVal - 273.15) + "°C";
 
+            let windSpeed = String(Math.round(response.data.wind.speed)) + " Km/h";
+
+            windValue.textContent = windSpeed;
+
+            let pressurehold = String(Math.round(response.data.main.pressure)) + " hPa";
+
+            pressureValue.textContent = pressurehold; 
+
+            let holdHumid = String(Math.round(response.data.main.humidity)) + " %";
+
+            humidityValue.textContent = holdHumid; 
 
             let weatherCondition = response.data.weather[0].id;
 
