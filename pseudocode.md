@@ -55,4 +55,6 @@ If there are values in the array we will make the left and right buttons appear 
 
 We will also iterate through the array on presses to go to the next index in the array. We will loop around if you are at the end of the index array or if you are at the start of it. (Done)
 
-Need to add delete button (). If the delete button is pressed we will delete this instance from the array. When button is pressed we will set currentValue and call 
+Need to add delete button (Done). If the delete button is pressed we will delete this instance from the array. When button is pressed we will set currentValue and call (Done)
+
+Now will add overlay to make image and all text look better. Need to add darkening effect to holdImgDiv to make everything appear more clearly 
