@@ -192,14 +192,18 @@ holdButtons.appendChild(rightArrow);
 // Should only append below function when the length of the arrayOfValues is greater than 1 
 console.log(arrayOfValues.length);
 
-holdButtons.style.visibility = "hidden"; // Initially hide the buttons
+
+
+
 
 // Adding buttons to holdImageDiv
 holdImageDiv.appendChild(holdButtons);
 
 // Checking if buttons should be visible
-if (arrayOfValues.length > 1 && holdButtons.style.visibility === "hidden") {
-    holdButtons.style.visibility = ""; // Make the buttons visible
+if (arrayOfValues.length >= 2) {
+    holdButtons.style.visibility = "visible"; // Make the buttons visible
+} else {
+    holdButtons.style.visibility = "hidden";
 }
 
 
@@ -267,13 +271,17 @@ async function loadIn(zipVal){
             } else {
                 holdImageDiv.style.backgroundImage = "url(img/Hot.jpg)";
             }
-            if (arrayOfValues.length > 1 && holdButtons.style.visibility === "hidden") {
-                holdButtons.style.visibility = ""; // Make the buttons visible
-            }
 
             // I can call the function to set the array and I can console.log to see value
             arrayOfValues = addNewValueToArray(arrayOfValues, JSON.parse(zipVal));
             console.log(arrayOfValues);
+           
+            // Checking if buttons should be visible
+            if (arrayOfValues.length >= 2) {
+                holdButtons.style.visibility = "visible"; // Make the buttons visible
+            } else {
+                holdButtons.style.visibility = "hidden";
+            }
             
         })
         .catch(error => {
