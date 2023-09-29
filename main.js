@@ -1,4 +1,4 @@
-localStorage.clear();
+
 
 // Used to keep up with currentValue 
 let currentValue;
@@ -57,6 +57,29 @@ holdTopRow.classList.add("row");
 holdTopRow.classList.add("bg-success");
 holdTopRow.classList.add("vw-75");
 
+// Creating delete button 
+
+let deleteBtn = document.createElement("div");
+deleteBtn.textContent = "X"
+deleteBtn.classList.add("deleteBtn", "col-2", "col-lg-1", "order-lg-4", "order-2");
+
+// Need to delete value from array and return firstVal or secondVal
+async function deleteLocation() {
+
+    // Can only call this while location is greater than 1 
+
+    if(arrayOfValues.length > 1){
+    // First value is gone 
+    arrayOfValues = arrayOfValues.filter(value => value != currentValue);
+    }
+    // Can now call loadIn at zero index 
+    await loadIn(arrayOfValues[0]);
+
+}
+
+deleteBtn.addEventListener("click", function(){
+    deleteLocation(); 
+})
 
 // Need to add cols for containing all the elements 
 let holdZipCol = document.createElement("col"); 
@@ -66,14 +89,14 @@ let holdSubmitCol = document.createElement("col");
 let holdCityName = document.createElement("col")
 
 // Need to add cols styling for size 
-holdZipCol.classList.add("col-12", "col-lg-4", "order-1", "order-lg-2");
+holdZipCol.classList.add("col-10", "col-lg-4", "order-1", "order-lg-2");
 holdZipCol.classList.add("bg-primary");
 
-holdSubmitCol.classList.add("col-12", "col-lg-4", "order-2", "order-lg-3");
+holdSubmitCol.classList.add("col-12", "col-lg-4", "order-3", "order-lg-3");
 holdSubmitCol.classList.add("bg-black");
 
 // Holds city 
-holdCityName.classList.add("col-12", "col-lg-4", "order-3", "order-lg-1")
+holdCityName.classList.add("col-12", "col-lg-3", "order-4", "order-lg-1")
 // holdCityName.classList.add("bg-white");
 
 // Adds elements to top column
@@ -83,6 +106,7 @@ holdCityName.appendChild(holdText);
 
 // Adds columns to top Row
 holdTopRow.appendChild(holdCityName);
+holdTopRow.appendChild(deleteBtn);
 holdTopRow.appendChild(holdZipCol); 
 holdTopRow.appendChild(holdSubmitCol);
 
@@ -170,27 +194,6 @@ newArrow.style.position = "relative";
 
 newArrow.style.color = "white"
 
-// Function for newArrow that will allow for moving between values 
-
-// async function moveLeft(){
-    
-//     // You are currently on the leftMost value, go to rightmost val 
-//     if(currentValue === arrayOfValues[0]){
-//         await loadIn(arrayOfValues[arrayOfValues.length - 1]);
-//     } else {
-        
-//         for(let i = 0; i < arrayOfValues.length; i++){
-//             if(arrayOfValues[i] === currentValue){
-//                 currentIndex = i;
-//             }
-//         }
-
-//         await loadIn(arrayOfValues[currentIndex - 1]);
-        
-//     }
-
-//     // Need to move through array and textValue of array
-// }
 
 async function moveLeft(){
     
