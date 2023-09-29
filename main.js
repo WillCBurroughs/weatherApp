@@ -71,8 +71,10 @@ async function deleteLocation() {
     // First value is gone 
     arrayOfValues = arrayOfValues.filter(value => value != currentValue);
     }
+
     // Can now call loadIn at zero index 
     await loadIn(arrayOfValues[0]);
+    imageHourly.src = getImageForHour(response);
 
 }
 
@@ -237,6 +239,7 @@ async function moveLeft(){
         }
     }
 
+    imageHourly.src = getImageForHour(response);
     // Need to move through array and textValue of array
 }
 
@@ -289,6 +292,7 @@ async function moveRight(){
         }
     }
 
+    
     // Need to move through array and textValue of array
 }
 
@@ -308,10 +312,6 @@ holdButtons.appendChild(rightArrow);
 // Should only append below function when the length of the arrayOfValues is greater than 1 
 console.log(arrayOfValues.length);
 
-
-
-
-
 // Adding buttons to holdImageDiv
 holdImageDiv.appendChild(holdButtons);
 
@@ -322,7 +322,6 @@ if (arrayOfValues.length >= 2) {
     holdButtons.style.visibility = "hidden";
 }
 
-
 holdImageDiv.appendChild(tempDisplay);
 
 // Adding div to page 
@@ -330,7 +329,7 @@ document.body.appendChild(holdImageDiv);
 
 
 let holdWind = document.createElement("div");
-holdWind.classList.add("col", "col-3", "trio");
+holdWind.classList.add("col", "col-3", "col-lg-2", "trio");
 
 let windImage = document.createElement("img");
 windImage.classList.add("iconToAdd"); 
@@ -350,7 +349,7 @@ windValue.classList.add("valueNumber")
 holdWind.appendChild(windValue);
 
 let holdPressure = document.createElement("div");
-holdPressure.classList.add("col", "col-3", "trio");
+holdPressure.classList.add("col", "col-3","col-lg-2", "trio");
 
 let pressureImage = document.createElement("img"); 
 pressureImage.classList.add("iconToAdd"); 
@@ -370,7 +369,7 @@ pressureValue.classList.add("valueNumber");
 holdPressure.appendChild(pressureValue);
 
 let holdHumidity = document.createElement("div");
-holdHumidity.classList.add("col", "col-3", "trio");
+holdHumidity.classList.add("col", "col-3","col-lg-2", "trio");
 
 let humidityImage = document.createElement("img");
 humidityImage.classList.add("iconToAdd");
@@ -390,17 +389,117 @@ humidityValue.classList.add("valueNumber")
 holdHumidity.appendChild(humidityValue);
 
 let newRow = document.createElement("div");
-newRow.classList.add("row", "bg-success", "justify-content-between");
+newRow.classList.add("row", "sm-justify-content-between");
 
 let trioContainer = document.createElement("div");
-trioContainer.classList.add("container", "bg-success", "vw-75");
+trioContainer.classList.add("container", "vw-75");
+
+let holdHourly = document.createElement("div");
+holdHourly.classList.add("col-11", "col-lg-5", "holdHourly", "justify-content-between", "d-flex"); 
+
+// let currentHour = 
+
+console.log("Hour Val" , currentDate.getHours());
+
+let nowTime = document.createElement("div");
+nowTime.classList.add("col", "col-3", "d-flex", "flex-column", "align-items-center", "text-center");
+
+let currentHour = document.createElement("p");
+currentHour.classList.add("hourTexts");
+currentHour.textContent = "Now";
+
+let imageHourly = document.createElement("img"); 
+imageHourly.classList.add("hourlyIcons")
+
+nowTime.appendChild(currentHour);
+nowTime.appendChild(imageHourly);
+
+let currentTemp = document.createElement("p");
+currentTemp.classList.add("hourTexts")
+
+nowTime.appendChild(currentTemp);
+holdHourly.appendChild(nowTime);
+
+
+let nextTime = document.createElement("div"); 
+nextTime.classList.add("col", "col-3", "d-flex", "flex-column", "align-items-center", "text-center");
+
+let nextHour = document.createElement("p"); 
+nextHour.classList.add("hourTexts"); 
+nextHour.textContent = "12:00pm"; 
+
+let imageNextHourly = document.createElement("img"); 
+imageNextHourly.classList.add("hourlyIcons"); 
+
+nextTime.appendChild(nextHour); 
+nextTime.appendChild(imageNextHourly); 
+
+let nextTemp = document.createElement("p"); 
+nextTemp.classList.add("hourTexts"); 
+nextTemp.textContent = "assa"
+
+nextTime.appendChild(nextTemp); 
+holdHourly.appendChild(nextTime);
+
+let secondNextTime = document.createElement("div"); 
+secondNextTime.classList.add("col", "col-3", "d-flex", "flex-column", "align-items-center", "text-center");
+
+let nextNextHour = document.createElement("p"); 
+nextNextHour.classList.add("hourTexts");
+nextNextHour.textContent = "3:00pm"; 
+
+let imageNextNextHourly = document.createElement("img");
+imageNextNextHourly.classList.add("hourlyIcons"); 
+
+secondNextTime.appendChild(nextNextHour);
+secondNextTime.appendChild(imageNextNextHourly); 
+
+let nextNextTemp = document.createElement("p"); 
+nextNextTemp.classList.add("hourTexts");
+
+nextNextTemp.textContent = "It is here";
+
+secondNextTime.appendChild(nextNextTemp);
+
+holdHourly.appendChild(secondNextTime);
+
+let threeNextTime = document.createElement("div"); 
+threeNextTime.classList.add("col", "col-3", "d-flex", "flex-column", "align-items-center", "text-center");
+
+let threeNextHour = document.createElement("p"); 
+threeNextHour.classList.add("hourTexts"); 
+threeNextHour.textContent = "6:00pm"; 
+
+let imageLastHourly = document.createElement("img");
+imageLastHourly.classList.add("hourlyIcons");
+
+threeNextTime.appendChild(threeNextHour);
+threeNextTime.appendChild(imageLastHourly); 
+
+let lastTemp = document.createElement("p");
+lastTemp.classList.add("hourTexts"); 
+
+lastTemp.textContent = "Last";
+threeNextTime.appendChild(lastTemp);
+
+holdHourly.appendChild(threeNextTime);
+
 
 newRow.appendChild(holdWind);
 newRow.appendChild(holdPressure);
 newRow.appendChild(holdHumidity);
 
+
+
+
+
+newRow.appendChild(holdHourly);
+
 trioContainer.appendChild(newRow);
 document.body.appendChild(trioContainer);
+
+
+
 
 
 // This function is used to test if a value is already in the array. 
@@ -416,10 +515,37 @@ function addNewValueToArray(array,value){
     return array;
 }
 
+// I need to get date time and use that 
+function getImageForHour(mainWeather){
+    console.log(mainWeather.data.weather[0].main); 
+    if(mainWeather.data.weather[0].main === "Clear"){
+        return "img/Sun.png";
+    } else if (mainWeather.data.weather[0].main === "Clouds"){
+        return "img/cloudy.png";
+    } else {
+        return "img/Rain.png";
+    }
+}
+
+// I need to get date time and use that 
+// Will work for getting next 3 values 
+// Need to pass response.data.list[Value] Where value is 1 for 1 2 for 2 and 3 for 3 
+function getNextImagesForHour(Index){
+    console.log(Index.weather[0].main); 
+    if(Index.data.weather[0].main === "Clear"){
+        return "img/Sun.png";
+    } else if (Index.data.weather[0].main === "Clouds"){
+        return "img/cloudy.png";
+    } else {
+        return "img/Rain.png";
+    }
+}
+
 
 // Useful for getting zip
 let apiKey = "77abea49302d916cfd2aab05e9372441";
 let urlVal = "https://api.openweathermap.org/data/2.5/weather?zip=42167&appid=" + apiKey;
+
 
 // Will pass in value to this that will be looked up
 async function loadIn(zipVal){
@@ -460,12 +586,13 @@ async function loadIn(zipVal){
             humidityValue.textContent = holdHumid; 
 
             let weatherCondition = response.data.weather[0].id;
+            let weatherType = response.data.weather[0].main; 
 
             // Check if raining. If raining add rain image "https://api.openweathermap.org/data/2.5/weather?zip=40502&appid=77abea49302d916cfd2aab05e9372441"
             if(weatherCondition >= 500 && weatherCondition < 600){
                 holdImageDiv.style.backgroundImage = "url(img/Raining.jpg)";
             }
-            else if(holdVal < 255){
+            else if(holdVal < 280){
                 holdImageDiv.style.backgroundImage = "url(img/cold.jpg)";
             } else if(holdVal < 300){
                 holdImageDiv.style.backgroundImage = "url(img/Temperate.jpg)";
@@ -485,8 +612,18 @@ async function loadIn(zipVal){
             }
 
             // In this condition index is valid 
-            currentValue = zipVal; 
+            currentValue = zipVal;
             console.log(currentValue);
+
+            if(weatherType === "Clear"){
+                imageHourly.src = "img/Sun.png";
+            } else if(weatherType === "Clouds") {
+                imageHourly.src = "img/cloudy-day.png";
+            } else {
+                imageHourly.src = "img/Rain.png";
+            }
+            // imageHourly.src = getImageForHour(response);
+            currentTemp.textContent = tempDisplay.textContent;
             
         })
         .catch(error => {
@@ -502,7 +639,42 @@ async function loadIn(zipVal){
     
 
 
-    // console.log(dataDisplay);
+    let newurl = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipVal}&appid=4912fed6ea9f93a8898895be4723a205`;
+    let forecast = await axios.get(newurl); 
+
+     
+    nextTemp.textContent = Math.round(forecast.data.list[0].main.temp - 273.15) + "°C";
+
+    nextNextTemp.textContent = Math.round(forecast.data.list[1].main.temp - 273.15) + "°C";
+    lastTemp.textContent = Math.round(forecast.data.list[2].main.temp - 273.15) + "°C";
+
+    if(forecast.data.list[0].weather[0].main === "Rain"){
+        imageNextHourly.src = "img/Rain.png";
+    } else if(forecast.data.list[0].weather[0].main === "Clouds"){
+        imageNextHourly.src = "img/cloudy-day.png";
+    } else{
+        imageNextHourly.src = "img/Sun.png"; 
+    }
+
+    if(forecast.data.list[1].weather[0].main === "Rain"){
+        imageNextNextHourly.src = "img/Rain.png";
+    } else if(forecast.data.list[1].weather[0].main === "Clouds"){
+        imageNextNextHourly.src = "img/cloudy-day.png";
+    } else{
+        imageNextNextHourly.src = "img/Sun.png"; 
+    }
+
+    if(forecast.data.list[2].weather[0].main === "Rain"){
+        imageLastHourly.src = "img/Rain.png";
+    } else if(forecast.data.list[2].weather[0].main === "Clouds"){
+        imageLastHourly.src = "img/cloudy-day.png";
+    } else{
+        imageLastHourly.src = "img/Sun.png"; 
+    }
+
+    console.log("This is the forecast", forecast);
+
+
 
 }
 

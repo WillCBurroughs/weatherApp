@@ -124,3 +124,34 @@ body{
     position: relative; 
     width: 30px; 
   }
+
+  .holdHourly {
+    border-radius: 30px;
+    background: #FDFDFD;
+    height: 135px; 
+    position: relative; 
+    margin: 10px;
+    margin-top: 15px;
+  }
+
+  .hourTexts {
+    color: #474350;
+    font-family: "Inter, Arial, Helvetica, sans-serif";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    position: relative;
+    top: 10px;
+    margin-left: 25px;
+  }
+
+  .hourlyIcons {
+    width: 30px;
+    height: 30px;
+    position: relative; 
+    margin-left: 25px; 
+    margin-top: 10px; 
+  }
+
+  
