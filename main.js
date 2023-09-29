@@ -1,5 +1,9 @@
 localStorage.clear();
 
+// Used to keep up with currentValue 
+let currentValue;
+let currentIndex;
+
 let holdText = document.createElement("h1");
 holdText.textContent = "Hello";
 holdText.classList.add("cityName");
@@ -166,6 +170,68 @@ newArrow.style.position = "relative";
 
 newArrow.style.color = "white"
 
+// Function for newArrow that will allow for moving between values 
+
+// async function moveLeft(){
+    
+//     // You are currently on the leftMost value, go to rightmost val 
+//     if(currentValue === arrayOfValues[0]){
+//         await loadIn(arrayOfValues[arrayOfValues.length - 1]);
+//     } else {
+        
+//         for(let i = 0; i < arrayOfValues.length; i++){
+//             if(arrayOfValues[i] === currentValue){
+//                 currentIndex = i;
+//             }
+//         }
+
+//         await loadIn(arrayOfValues[currentIndex - 1]);
+        
+//     }
+
+//     // Need to move through array and textValue of array
+// }
+
+async function moveLeft(){
+    
+    console.log('Before if condition - currentValue:', currentValue);
+
+    // You are currently on the leftMost value, go to rightmost val 
+    if(currentValue === arrayOfValues[0]){
+        currentValue = arrayOfValues[arrayOfValues.length - 1];
+        await loadIn(arrayOfValues[arrayOfValues.length - 1]);
+    } else {
+        
+        // Correct up to here 
+        console.log('Array of values:', arrayOfValues);
+
+        for(let i = 0; i < arrayOfValues.length; i++){
+            if(arrayOfValues[i] == currentValue){
+                currentIndex = i;
+                break;
+            }
+        }
+
+        console.log('Current index:', currentIndex);
+
+        // If the user is on the rightmost value in the array, move to the leftmost value.
+        if (currentIndex === 0) {
+            await loadIn(arrayOfValues[arrayOfValues.length - 1]);
+            currentValue = arrayOfValues[arrayOfValues.length - 1];
+        } else {
+            await loadIn(arrayOfValues[currentIndex - 1]);
+            currentValue = arrayOfValues[currentIndex - 1];
+        }
+    }
+
+    // Need to move through array and textValue of array
+}
+
+newArrow.addEventListener("click", async function(){
+    await moveLeft();
+})
+
+
 let holdButtons = document.createElement("div"); 
 
 let rightArrow = document.createElement("i");
@@ -238,6 +304,7 @@ async function loadIn(zipVal){
     // Will return passed in val
     urlVal = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipVal + "&appid=" + apiKey;
 
+    console.log("API Request URL:", urlVal);
     // Remove this in a minute 
     // let rememberValue = await axios.get(urlVal); 
 
@@ -282,9 +349,14 @@ async function loadIn(zipVal){
             } else {
                 holdButtons.style.visibility = "hidden";
             }
+
+            // In this condition index is valid 
+            currentValue = zipVal; 
+            console.log(currentValue);
             
         })
         .catch(error => {
+            console.error("API Request Error:", error);
             holdText.textContent = `Invalid error: ${error}`;
             if (error.message.includes("4")) {
                 holdText.textContent = "Zip code not found";
@@ -294,6 +366,7 @@ async function loadIn(zipVal){
             }
         })
     
+
 
     // console.log(dataDisplay);
 
