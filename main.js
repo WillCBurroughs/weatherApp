@@ -1,8 +1,26 @@
+localStorage.clear();
 
 let holdText = document.createElement("h1");
 holdText.textContent = "Hello";
 holdText.classList.add("cityName");
 
+let arrayOfValues;
+
+// First need to check if arrayOfValues has a value 
+// If value saved save that in 
+if(localStorage.getItem("SavingZips") !== null){
+    arrayOfValues = JSON.parse(localStorage.getItem("SavingZips"));
+
+    // If no value is present default to Lexington
+    if(arrayOfValues.length === 0){
+        arrayOfValues = [40502];
+        localStorage.setItem("SavingZips", JSON.stringify(arrayOfValues));
+    }
+
+} else {
+    arrayOfValues = [40502]
+    localStorage.setItem("SavingZips", JSON.stringify(arrayOfValues));
+}
 
 // Where user will input zip code
 let inputZip = document.createElement("input");
@@ -162,11 +180,28 @@ rightArrow.style.color = "white"
 
 holdButtons.classList.add("d-flex", "justify-content-between", "align-items-center", "col-12", "vw-75", "bg-success", "p-3");
 
-holdButtons.appendChild(newArrow);
 
+// Need to add 2 functions one for left and one for right. When pressing left or right you move to value in array
+// If there is already a value in the array, you just move to that value
+
+// Need to add function for moving through 
+
+holdButtons.appendChild(newArrow);
 holdButtons.appendChild(rightArrow);
 
+// Should only append below function when the length of the arrayOfValues is greater than 1 
+console.log(arrayOfValues.length);
+
+holdButtons.style.visibility = "hidden"; // Initially hide the buttons
+
+// Adding buttons to holdImageDiv
 holdImageDiv.appendChild(holdButtons);
+
+// Checking if buttons should be visible
+if (arrayOfValues.length > 1 && holdButtons.style.visibility === "hidden") {
+    holdButtons.style.visibility = ""; // Make the buttons visible
+}
+
 
 holdImageDiv.appendChild(tempDisplay);
 
@@ -174,6 +209,19 @@ holdImageDiv.appendChild(tempDisplay);
 document.body.appendChild(holdImageDiv);
 
 
+
+// This function is used to test if a value is already in the array. 
+// If this is already in the array, we don't want to push to array
+// I need to call this value when adding a new value
+function addNewValueToArray(array,value){
+    if(array.includes(value) === false){
+        array.push(value);
+    }
+
+    // This is done to set the new value each time
+    localStorage.setItem("SavingZips", JSON.stringify(array));
+    return array;
+}
 
 
 // Useful for getting zip
@@ -208,7 +256,7 @@ async function loadIn(zipVal){
 
             let weatherCondition = response.data.weather[0].id;
 
-            // Check if raining. If raining add rain image 
+            // Check if raining. If raining add rain image "https://api.openweathermap.org/data/2.5/weather?zip=40502&appid=77abea49302d916cfd2aab05e9372441"
             if(weatherCondition >= 500 && weatherCondition < 600){
                 holdImageDiv.style.backgroundImage = "url(img/Raining.jpg)";
             }
@@ -219,7 +267,13 @@ async function loadIn(zipVal){
             } else {
                 holdImageDiv.style.backgroundImage = "url(img/Hot.jpg)";
             }
+            if (arrayOfValues.length > 1 && holdButtons.style.visibility === "hidden") {
+                holdButtons.style.visibility = ""; // Make the buttons visible
+            }
 
+            // I can call the function to set the array and I can console.log to see value
+            arrayOfValues = addNewValueToArray(arrayOfValues, JSON.parse(zipVal));
+            console.log(arrayOfValues);
             
         })
         .catch(error => {
@@ -233,7 +287,7 @@ async function loadIn(zipVal){
         })
     
 
-    console.log(dataDisplay);
+    // console.log(dataDisplay);
 
 }
 
