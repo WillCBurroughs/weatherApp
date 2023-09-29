@@ -43,4 +43,10 @@ For second version, I will have it so that user can input zip code and we can di
 
 For third version, I will display temperature as well on screen. I will also attempt to get the current user location. I will display the addtional displays that I believe are important. Need to import bootstrap. I will also attempt to place container info in a container and then row, column format. (Done)
 
-Move city name lower on the page. Need to add switch statement that determines image to load, So need to load in some images I could use  Make light and dark button functionality look like they should. For fourth version I will save user's location and default to currently displayed location. 
+Move city name lower on the page (Done). (Done), So need to load in some images I could use (Done)  Make light and dark button functionality look like they should (Done). Need to add switch statement that determines image to load (Done). For div I will have temperature be displayed on the far right of the image in the middle and I will have the date be displayed in the top left (For this I will need a date object). (Done)
+
+I will now add the divs to the page that will represent where we hold the Left and right button divs. I will programmatically add this to the page. (Done) 
+
+I will now add an overlay. 
+
+This will be a large step. For this one I will have an array and when adding a new value it will be pushed to the array. If there is already a value of this in the array we will not push this to the array, we will simply go to this in the array. If there are values in the array we will make the left and right buttons appear on the screen. We will save the array to memory. If the delete button is pressed we will delete this instance from the array. On load in we will add lexington if it is not already added. For this we will have a function that checks if the value we want to add is already in the array. We will also iterate through the array on presses to go to the next index in the array. We will loop around if you are at the end of the index array or if you are at the start of it. 
