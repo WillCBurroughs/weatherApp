@@ -57,4 +57,10 @@ We will also iterate through the array on presses to go to the next index in the
 
 Need to add delete button (Done). If the delete button is pressed we will delete this instance from the array. When button is pressed we will set currentValue and call (Done)
 
-Now will add overlay to make image and all text look better. Need to add darkening effect to holdImgDiv to make everything appear more clearly 
+Now will add overlay to make image and all text look better. Need to add darkening effect to holdImgDiv to make everything appear more clearly (Done)
+
+Add in all wind, pressure and humidity values (Done)
+
+Need to add in outline and designs for hourly forecase (Next four hours) 
+
+Need to use conditions to decide what to add at each time interval (for Every three hours). Some I should have (Clear sky, Clouds, Rain)
