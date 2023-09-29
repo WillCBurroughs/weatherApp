@@ -247,6 +247,43 @@ rightArrow.style.color = "white"
 holdButtons.classList.add("d-flex", "justify-content-between", "align-items-center", "col-12", "vw-75", "bg-success", "p-3");
 
 
+async function moveRight(){
+    
+    console.log('Before if condition - currentValue:', currentValue);
+
+    // You are currently on the rightmost value, go to the leftmost value 
+    if(currentValue === arrayOfValues[arrayOfValues.length - 1]){
+        currentValue = arrayOfValues[0];
+        await loadIn(arrayOfValues[0]);
+    } else {
+        
+        for(let i = 0; i < arrayOfValues.length; i++){
+            if(arrayOfValues[i] == currentValue){
+                currentIndex = i;
+                break;
+            }
+        }
+
+        console.log('Current index:', currentIndex);
+
+        // If the user is on the rightmost value in the array, move to the leftmost value.
+        if (currentIndex === arrayOfValues.length - 1) {
+            await loadIn(arrayOfValues[0]);
+            currentValue = arrayOfValues[0];
+        } else {
+            await loadIn(arrayOfValues[currentIndex + 1]);
+            currentValue = arrayOfValues[currentIndex + 1];
+        }
+    }
+
+    // Need to move through array and textValue of array
+}
+
+rightArrow.addEventListener("click", async function(){
+    await moveRight();
+})
+
+
 // Need to add 2 functions one for left and one for right. When pressing left or right you move to value in array
 // If there is already a value in the array, you just move to that value
 
