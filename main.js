@@ -84,12 +84,96 @@ holdImageDiv.style.backgroundRepeat = "no-repeat";
 let tempDisplay = document.createElement("h2");
 tempDisplay.innerText = "Display Value"; 
 
-tempDisplay.classList.add("cityName")
+tempDisplay.classList.add("cityName", "position-relative");
+tempDisplay.style.textAlign = "right";
+tempDisplay.style.top = "200px";
+// tempDisplay.style.
+
+
+
+// Add date to get current date and set that into 
+let currentDate = new Date(); 
+
+// Used for math 
+let holdDay = parseInt(currentDate.getDate())
+
+// //
+let dateToDisplay = String(currentDate.getDate());
+
+// Determining what date ender to add to dateToDisplay 
+if(holdDay % 10 == 1 && holdDay / 10 != 1){
+    dateToDisplay += "st";
+} else if(holdDay % 10 == 2 && holdDay / 10 != 1){
+    dateToDisplay += "nd";
+} else if(holdDay % 10 == 3 && holdDay / 10 != 1){
+    dateToDisplay += "rd";
+} else {
+    dateToDisplay += "th"
+} 
+
+// Adding month 
+let holdMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let getMonth = currentDate.getMonth(); 
+
+let holdDate = document.createElement("h3");
+holdDate.innerText = dateToDisplay + " " + holdMonths[getMonth] + ","; 
+
+// Used to unbold
+let holdSpan = document.createElement("span"); 
+holdSpan.classList.add("Unbold"); 
+
+let dayOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+holdSpan.textContent = " " + String(dayOfWeek[currentDate.getDay()]);
+
+holdDate.appendChild(holdSpan);
+
+holdDate.classList.add("date");
+
+holdImageDiv.appendChild(holdDate);
+
+// console.log(dateToDisplay);
+
+// console.log(currentDate); 
+
+
+// Need to add left and right arrows 
+let newArrow = document.createElement("i"); 
+
+newArrow.classList.add("bi", "bi-arrow-left");
+
+newArrow.style.fontSize = "100px";
+
+newArrow.style.position = "relative"; 
+
+newArrow.style.color = "white"
+
+let holdButtons = document.createElement("div"); 
+
+let rightArrow = document.createElement("i");
+
+rightArrow.classList.add("bi", "bi-arrow-right");
+
+rightArrow.style.fontSize = "100px";
+
+rightArrow.style.position = "relative"; 
+
+rightArrow.style.color = "white"
+
+holdButtons.classList.add("d-flex", "justify-content-between", "align-items-center", "col-12", "vw-75", "bg-success", "p-3");
+
+holdButtons.appendChild(newArrow);
+
+holdButtons.appendChild(rightArrow);
+
+holdImageDiv.appendChild(holdButtons);
 
 holdImageDiv.appendChild(tempDisplay);
 
 // Adding div to page 
 document.body.appendChild(holdImageDiv);
+
+
 
 
 // Useful for getting zip
@@ -106,7 +190,10 @@ async function loadIn(zipVal){
     // let rememberValue = await axios.get(urlVal); 
 
     // // This is what we set the temperature equal to 
-    // console.log(Math.round(rememberValue.data.main.temp));
+    // console.log((rememberValue));
+
+    // Checking to get main
+    // console.log((rememberValue.data.weather[0].main))
 
     // let dataDisplay = await axios.get(urlVal)
     let dataDisplay = axios.get(urlVal)
@@ -114,10 +201,24 @@ async function loadIn(zipVal){
             holdText.textContent = response.data.name;
 
             let holdVal = Math.round(response.data.main.temp);
-            // Add functionality to determine what image should be 
-            tempDisplay.textContent = holdVal;
 
-            
+            // Add functionality to determine what image should be 
+            tempDisplay.textContent = Math.round(holdVal - 273.15) + "°C";
+
+
+            let weatherCondition = response.data.weather[0].id;
+
+            // Check if raining. If raining add rain image 
+            if(weatherCondition >= 500 && weatherCondition < 600){
+                holdImageDiv.style.backgroundImage = "url(img/Raining.jpg)";
+            }
+            else if(holdVal < 255){
+                holdImageDiv.style.backgroundImage = "url(img/cold.jpg)";
+            } else if(holdVal < 300){
+                holdImageDiv.style.backgroundImage = "url(img/Temperate.jpg)";
+            } else {
+                holdImageDiv.style.backgroundImage = "url(img/Hot.jpg)";
+            }
 
             
         })

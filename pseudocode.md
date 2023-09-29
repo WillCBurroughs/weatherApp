@@ -43,6 +43,6 @@ For second version, I will have it so that user can input zip code and we can di
 
 For third version, I will display temperature as well on screen. I will also attempt to get the current user location. I will display the addtional displays that I believe are important. Need to import bootstrap. I will also attempt to place container info in a container and then row, column format. (Done)
 
-Move city name lower on the page (Done). (Done), So need to load in some images I could use (Done)  Make light and dark button functionality look like they should (Done). Need to add switch statement that determines image to load. For div I will have temperature be displayed on the far right of the image in the middle and I will have the date be displayed in the top left (For this I will need a date object). 
+Move city name lower on the page (Done). (Done), So need to load in some images I could use (Done)  Make light and dark button functionality look like they should (Done). Need to add switch statement that determines image to load (Done). For div I will have temperature be displayed on the far right of the image in the middle and I will have the date be displayed in the top left (For this I will need a date object). (Done)
 
-For this version I will save user's location and default to currently displayed location. 
+I will now add the divs to the page that will represent where we hold the Left and right button divs. I will programmatically add this to the page

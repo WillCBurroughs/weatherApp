@@ -34,3 +34,12 @@ body{
 .holdFullImage{
     height: 500px;
 }
+
+.date {
+    font-weight: bold;
+    color: rgb(253, 253, 253);
+}
+
+.Unbold{
+    font-weight: 300;
+}
