@@ -1,5 +1,6 @@
 
 
+
 // Used to keep up with currentValue 
 let currentValue;
 let currentIndex;
@@ -571,7 +572,7 @@ async function loadIn(zipVal){
             let holdVal = Math.round(response.data.main.temp);
 
             // Add functionality to determine what image should be 
-            tempDisplay.textContent = Math.round(holdVal - 273.15) + "°C";
+            tempDisplay.textContent = Math.round(((holdVal - 273.15) * 9/5) + 32) + "°F";
 
             let windSpeed = String(Math.round(response.data.wind.speed)) + " Km/h";
 
@@ -673,8 +674,6 @@ async function loadIn(zipVal){
     }
 
     console.log("This is the forecast", forecast);
-
-
 
 }
 
